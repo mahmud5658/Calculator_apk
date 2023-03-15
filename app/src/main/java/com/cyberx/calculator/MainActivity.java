@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.button.MaterialButton;
-
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Scriptable;
 
@@ -85,12 +83,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
+
     String getResult(String data) {
         try {
             Context context = Context.enter();
             context.setOptimizationLevel(-1);
             Scriptable scriptable = context.initStandardObjects();
-            String finalResult = context.evaluateString(scriptable, data, "Javascript", 1, null).toString();
+            String finalResult = context.evaluateString(scriptable, data, "", 1, null).toString();
             if (finalResult.endsWith(".0")) {
                 finalResult = finalResult.replace(".0", "");
             }
